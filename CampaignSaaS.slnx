@@ -1,0 +1,76 @@
+<Solution>
+  <Folder Name="/src/" />
+  <Folder Name="/src/server/" />
+  <Folder Name="/src/server/Modules/" />
+  <Folder Name="/src/server/Modules/Approval/">
+    <Project Path="src/server/Modules/Approval/CampaignSaaS.Modules.Approval.Application/CampaignSaaS.Modules.Approval.Application.csproj" />
+    <Project Path="src/server/Modules/Approval/CampaignSaaS.Modules.Approval.Contracts/CampaignSaaS.Modules.Approval.Contracts.csproj" />
+    <Project Path="src/server/Modules/Approval/CampaignSaaS.Modules.Approval.Domain/CampaignSaaS.Modules.Approval.Domain.csproj" />
+    <Project Path="src/server/Modules/Approval/CampaignSaaS.Modules.Approval.Infrastructure/CampaignSaaS.Modules.Approval.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Audit/">
+    <Project Path="src/server/Modules/Audit/CampaignSaaS.Modules.Audit.Application/CampaignSaaS.Modules.Audit.Application.csproj" />
+    <Project Path="src/server/Modules/Audit/CampaignSaaS.Modules.Audit.Contracts/CampaignSaaS.Modules.Audit.Contracts.csproj" />
+    <Project Path="src/server/Modules/Audit/CampaignSaaS.Modules.Audit.Domain/CampaignSaaS.Modules.Audit.Domain.csproj" />
+    <Project Path="src/server/Modules/Audit/CampaignSaaS.Modules.Audit.Infrastructure/CampaignSaaS.Modules.Audit.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Campaign/">
+    <Project Path="src/server/Modules/Campaign/CampaignSaaS.Modules.Campaign.Application/CampaignSaaS.Modules.Campaign.Application.csproj" />
+    <Project Path="src/server/Modules/Campaign/CampaignSaaS.Modules.Campaign.Contracts/CampaignSaaS.Modules.Campaign.Contracts.csproj" />
+    <Project Path="src/server/Modules/Campaign/CampaignSaaS.Modules.Campaign.Domain/CampaignSaaS.Modules.Campaign.Domain.csproj" />
+    <Project Path="src/server/Modules/Campaign/CampaignSaaS.Modules.Campaign.Infrastructure/CampaignSaaS.Modules.Campaign.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Client/">
+    <Project Path="src/server/Modules/Client/CampaignSaaS.Modules.Client.Application/CampaignSaaS.Modules.Client.Application.csproj" />
+    <Project Path="src/server/Modules/Client/CampaignSaaS.Modules.Client.Contracts/CampaignSaaS.Modules.Client.Contracts.csproj" />
+    <Project Path="src/server/Modules/Client/CampaignSaaS.Modules.Client.Domain/CampaignSaaS.Modules.Client.Domain.csproj" />
+    <Project Path="src/server/Modules/Client/CampaignSaaS.Modules.Client.Infrastructure/CampaignSaaS.Modules.Client.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Creator/">
+    <Project Path="src/server/Modules/Creator/CampaignSaaS.Modules.Creator.Application/CampaignSaaS.Modules.Creator.Application.csproj" />
+    <Project Path="src/server/Modules/Creator/CampaignSaaS.Modules.Creator.Contracts/CampaignSaaS.Modules.Creator.Contracts.csproj" />
+    <Project Path="src/server/Modules/Creator/CampaignSaaS.Modules.Creator.Domain/CampaignSaaS.Modules.Creator.Domain.csproj" />
+    <Project Path="src/server/Modules/Creator/CampaignSaaS.Modules.Creator.Infrastructure/CampaignSaaS.Modules.Creator.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Deliverable/">
+    <Project Path="src/server/Modules/Deliverable/CampaignSaaS.Modules.Deliverable.Application/CampaignSaaS.Modules.Deliverable.Application.csproj" />
+    <Project Path="src/server/Modules/Deliverable/CampaignSaaS.Modules.Deliverable.Contracts/CampaignSaaS.Modules.Deliverable.Contracts.csproj" />
+    <Project Path="src/server/Modules/Deliverable/CampaignSaaS.Modules.Deliverable.Domain/CampaignSaaS.Modules.Deliverable.Domain.csproj" />
+    <Project Path="src/server/Modules/Deliverable/CampaignSaaS.Modules.Deliverable.Infrastructure/CampaignSaaS.Modules.Deliverable.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Identity/">
+    <Project Path="src/server/Modules/Identity/CampaignSaaS.Modules.Identity.Application/CampaignSaaS.Modules.Identity.Application.csproj" />
+    <Project Path="src/server/Modules/Identity/CampaignSaaS.Modules.Identity.Contracts/CampaignSaaS.Modules.Identity.Contracts.csproj" />
+    <Project Path="src/server/Modules/Identity/CampaignSaaS.Modules.Identity.Domain/CampaignSaaS.Modules.Identity.Domain.csproj" />
+    <Project Path="src/server/Modules/Identity/CampaignSaaS.Modules.Identity.Infrastructure/CampaignSaaS.Modules.Identity.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Notification/">
+    <Project Path="src/server/Modules/Notification/CampaignSaaS.Modules.Notification.Application/CampaignSaaS.Modules.Notification.Application.csproj" />
+    <Project Path="src/server/Modules/Notification/CampaignSaaS.Modules.Notification.Contracts/CampaignSaaS.Modules.Notification.Contracts.csproj" />
+    <Project Path="src/server/Modules/Notification/CampaignSaaS.Modules.Notification.Domain/CampaignSaaS.Modules.Notification.Domain.csproj" />
+    <Project Path="src/server/Modules/Notification/CampaignSaaS.Modules.Notification.Infrastructure/CampaignSaaS.Modules.Notification.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Modules/Reporting/">
+    <Project Path="src/server/Modules/Reporting/CampaignSaaS.Modules.Reporting.Application/CampaignSaaS.Modules.Reporting.Application.csproj" />
+    <Project Path="src/server/Modules/Reporting/CampaignSaaS.Modules.Reporting.Contracts/CampaignSaaS.Modules.Reporting.Contracts.csproj" />
+    <Project Path="src/server/Modules/Reporting/CampaignSaaS.Modules.Reporting.Domain/CampaignSaaS.Modules.Reporting.Domain.csproj" />
+    <Project Path="src/server/Modules/Reporting/CampaignSaaS.Modules.Reporting.Infrastructure/CampaignSaaS.Modules.Reporting.Infrastructure.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Presentation/" />
+  <Folder Name="/src/server/Presentation/Api/">
+    <Project Path="src/server/Presentation/Api/CampaignSaaS.Api.csproj" />
+  </Folder>
+  <Folder Name="/src/server/Presentation/Worker/">
+    <Project Path="src/server/Presentation/Worker/CampaignSaaS.Worker.csproj" />
+  </Folder>
+  <Folder Name="/src/server/SharedKernel/">
+    <Project Path="src/server/SharedKernel/CampaignSaaS.SharedKernel.csproj" />
+  </Folder>
+  <Folder Name="/tests/" />
+  <Folder Name="/tests/ArchitectureTests/">
+    <Project Path="tests/ArchitectureTests/CampaignSaaS.ArchitectureTests.csproj" />
+  </Folder>
+  <Folder Name="/tests/UnitTests/">
+    <Project Path="tests/UnitTests/CampaignSaaS.UnitTests.csproj" />
+  </Folder>
+</Solution>

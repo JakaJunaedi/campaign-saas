@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\CampaignSaaS.SharedKernel.csproj" />
+    <ProjectReference Include="..\CampaignSaaS.Modules.Approval.Domain\CampaignSaaS.Modules.Approval.Domain.csproj" />
+    <ProjectReference Include="..\CampaignSaaS.Modules.Approval.Application\CampaignSaaS.Modules.Approval.Application.csproj" />
+    <ProjectReference Include="..\CampaignSaaS.Modules.Approval.Contracts\CampaignSaaS.Modules.Approval.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="9.0.0" />
+  </ItemGroup>
+</Project>

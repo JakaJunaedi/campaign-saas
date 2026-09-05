@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" 
+                  xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" 
+                  xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" 
+                  xmlns:di="http://www.omg.org/spec/DD/20100524/DI" 
+                  xmlns:camunda="http://camunda.org/schema/1.0/bpmn" 
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+                  id="Definitions_DeliverableApproval" 
+                  targetNamespace="http://campaignsaas.com/schema/bpmn">
+  <bpmn:process id="Process_DeliverableApproval" name="Deliverable Review and Approval Process" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_Assigned" name="Deliverable Assigned">
+      <bpmn:outgoing>Flow_1</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:sequenceFlow id="Flow_1" sourceRef="StartEvent_Assigned" targetRef="Activity_SubmitContent" />
+    
+    <bpmn:userTask id="Activity_SubmitContent" name="Creator Submit Draft Content" camunda:candidateGroups="Creators">
+      <bpmn:incoming>Flow_1</bpmn:incoming>
+      <bpmn:incoming>Flow_LoopRevision</bpmn:incoming>
+      <bpmn:outgoing>Flow_2</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_2" sourceRef="Activity_SubmitContent" targetRef="Activity_ReviewContent" />
+    
+    <bpmn:userTask id="Activity_ReviewContent" name="Internal Review Content" camunda:candidateGroups="Reviewers">
+      <bpmn:incoming>Flow_2</bpmn:incoming>
+      <bpmn:outgoing>Flow_Decision</bpmn:outgoing>
+    </bpmn:userTask>
+    
+    <bpmn:exclusiveGateway id="Gateway_Decision" name="Review Decision?">
+      <bpmn:incoming>Flow_Decision</bpmn:incoming>
+      <bpmn:outgoing>Flow_Approved</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Revision</bpmn:outgoing>
+      <bpmn:outgoing>Flow_Rejected</bpmn:outgoing>
+    </bpmn:exclusiveGateway>
+    <bpmn:sequenceFlow id="Flow_Decision" sourceRef="Activity_ReviewContent" targetRef="Gateway_Decision" />
+    
+    <bpmn:sequenceFlow id="Flow_Revision" name="Revision Requested" sourceRef="Gateway_Decision" targetRef="Activity_NotifyRevision">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${decision == 'REVISION'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    
+    <bpmn:serviceTask id="Activity_NotifyRevision" name="Send Revision Notification" camunda:type="external" camunda:topic="notify-revision">
+      <bpmn:incoming>Flow_Revision</bpmn:incoming>
+      <bpmn:outgoing>Flow_LoopRevision</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_LoopRevision" sourceRef="Activity_NotifyRevision" targetRef="Activity_SubmitContent" />
+    
+    <bpmn:sequenceFlow id="Flow_Approved" name="Approved" sourceRef="Gateway_Decision" targetRef="Activity_PublishContent">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${decision == 'APPROVED'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    
+    <bpmn:userTask id="Activity_PublishContent" name="Creator Post to Social &amp; Submit Proof" camunda:candidateGroups="Creators">
+      <bpmn:incoming>Flow_Approved</bpmn:incoming>
+      <bpmn:outgoing>Flow_Done</bpmn:outgoing>
+    </bpmn:userTask>
+    <bpmn:sequenceFlow id="Flow_Done" sourceRef="Activity_PublishContent" targetRef="EndEvent_Completed" />
+    
+    <bpmn:endEvent id="EndEvent_Completed" name="Deliverable Completed">
+      <bpmn:incoming>Flow_Done</bpmn:incoming>
+    </bpmn:endEvent>
+    
+    <bpmn:sequenceFlow id="Flow_Rejected" name="Rejected" sourceRef="Gateway_Decision" targetRef="EndEvent_Rejected">
+      <bpmn:conditionExpression xsi:type="bpmn:tFormalExpression">${decision == 'REJECTED'}</bpmn:conditionExpression>
+    </bpmn:sequenceFlow>
+    <bpmn:endEvent id="EndEvent_Rejected" name="Deliverable Rejected">
+      <bpmn:incoming>Flow_Rejected</bpmn:incoming>
+    </bpmn:endEvent>
+  </bpmn:process>
+</bpmn:definitions>

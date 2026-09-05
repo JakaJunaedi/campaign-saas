@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\CampaignSaaS.SharedKernel.csproj" />
+    <ProjectReference Include="..\CampaignSaaS.Modules.Notification.Domain\CampaignSaaS.Modules.Notification.Domain.csproj" />
+    <ProjectReference Include="..\CampaignSaaS.Modules.Notification.Contracts\CampaignSaaS.Modules.Notification.Contracts.csproj" />
+  </ItemGroup>
+</Project>

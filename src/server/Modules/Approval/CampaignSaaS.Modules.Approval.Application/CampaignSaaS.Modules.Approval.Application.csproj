@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\SharedKernel\CampaignSaaS.SharedKernel.csproj" />
+    <ProjectReference Include="..\CampaignSaaS.Modules.Approval.Domain\CampaignSaaS.Modules.Approval.Domain.csproj" />
+    <ProjectReference Include="..\CampaignSaaS.Modules.Approval.Contracts\CampaignSaaS.Modules.Approval.Contracts.csproj" />
+  </ItemGroup>
+</Project>

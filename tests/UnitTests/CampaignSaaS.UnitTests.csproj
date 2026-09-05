@@ -1,0 +1,40 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.12.0" />
+    <PackageReference Include="xunit" Version="2.9.2" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="3.0.0">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions" Version="7.0.0" />
+    <PackageReference Include="NSubstitute" Version="5.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\server\SharedKernel\CampaignSaaS.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Identity\CampaignSaaS.Modules.Identity.Domain\CampaignSaaS.Modules.Identity.Domain.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Identity\CampaignSaaS.Modules.Identity.Application\CampaignSaaS.Modules.Identity.Application.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Identity\CampaignSaaS.Modules.Identity.Contracts\CampaignSaaS.Modules.Identity.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Identity\CampaignSaaS.Modules.Identity.Infrastructure\CampaignSaaS.Modules.Identity.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Client\CampaignSaaS.Modules.Client.Domain\CampaignSaaS.Modules.Client.Domain.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Client\CampaignSaaS.Modules.Client.Application\CampaignSaaS.Modules.Client.Application.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Client\CampaignSaaS.Modules.Client.Contracts\CampaignSaaS.Modules.Client.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Client\CampaignSaaS.Modules.Client.Infrastructure\CampaignSaaS.Modules.Client.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Creator\CampaignSaaS.Modules.Creator.Domain\CampaignSaaS.Modules.Creator.Domain.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Creator\CampaignSaaS.Modules.Creator.Application\CampaignSaaS.Modules.Creator.Application.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Creator\CampaignSaaS.Modules.Creator.Contracts\CampaignSaaS.Modules.Creator.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Creator\CampaignSaaS.Modules.Creator.Infrastructure\CampaignSaaS.Modules.Creator.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Campaign\CampaignSaaS.Modules.Campaign.Domain\CampaignSaaS.Modules.Campaign.Domain.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Campaign\CampaignSaaS.Modules.Campaign.Application\CampaignSaaS.Modules.Campaign.Application.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Campaign\CampaignSaaS.Modules.Campaign.Contracts\CampaignSaaS.Modules.Campaign.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Campaign\CampaignSaaS.Modules.Campaign.Infrastructure\CampaignSaaS.Modules.Campaign.Infrastructure.csproj" />
+  </ItemGroup>
+</Project>
