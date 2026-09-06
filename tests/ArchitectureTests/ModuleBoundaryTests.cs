@@ -132,4 +132,45 @@ public class ModuleBoundaryTests
 
         result.IsSuccessful.Should().BeTrue("Creator module must not reference other module DbContexts directly.");
     }
+
+    [Fact]
+    public void CampaignDomain_ShouldNot_DependOn_InfrastructureOrApplication()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Campaign.Domain.Entities.Campaign).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Campaign.Infrastructure",
+                "CampaignSaaS.Modules.Campaign.Application",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Campaign Domain must not depend on Infrastructure, Application, or EF Core.");
+    }
+
+    [Fact]
+    public void CampaignApplication_ShouldNot_DependOn_Infrastructure()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Campaign.Application.Commands.CreateCampaign.CreateCampaignCommand).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Campaign.Infrastructure",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Campaign Application must not depend on Infrastructure or EF Core.");
+    }
+
+    [Fact]
+    public void CampaignModule_ShouldNot_DependOn_OtherModuleDbContexts()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Campaign.Infrastructure.Persistence.CampaignDbContext).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Identity.Infrastructure",
+                "CampaignSaaS.Modules.Client.Infrastructure",
+                "CampaignSaaS.Modules.Creator.Infrastructure")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Campaign module must not reference other module DbContexts directly.");
+    }
 }
