@@ -82,13 +82,21 @@ Lihat panduan lengkap:
 
 ## 📊 Module Implementation Status
 
-- [x] **Phase 0: Foundation & Infrastructure** (Modular Monolith, SharedKernel, EF Core, Docker Compose)
-- [x] **Phase 1: Identity & Multi-Tenancy** (Org, Users, JWT Auth, RBAC, Multi-tenant Query Filters)
-- [x] **Phase 2: Client Management** (Clients, Brands, Contacts JSONB)
-- [x] **Phase 3: Creator CRM & Social Accounts** (Creators, Multi-platform Social Accounts JSONB)
-- [x] **Phase 4: Campaign Lifecycle & Creator Roster** (Campaign Lifecycle, Dates, Budget, Creator Roster Management)
-- [ ] **Phase 5: Deliverables & Content Submission** (Deliverable Items, MinIO Presigned URLs, Versioning V1/V2, Live Proof)
-- [ ] **Phase 6: Approval & Review Module** (Review Decision, Feedback Comments, Camunda Workflow)
-- [ ] **Phase 7: Publishing & Manual Metrics** (Live URLs, Manual Metrics)
-- [ ] **Phase 8: Reporting Module** (jsreport Async Worker via RabbitMQ, PDF Reports)
+Penomoran phase mengacu pada [IMPLEMENTATION_PLAN.md](file:///d:/Jack/dotnet/campaign-saas/docs/06-implementation/IMPLEMENTATION_PLAN.md) (12 phase).
+
+- [x] **Phase 0: Foundation Setup** (Solution Structure, SharedKernel, EF Core, Docker Compose)
+- [x] **Phase 1: Identity & Multi-Tenancy** (Org, Users, JWT Auth, RBAC, Tenant Query Filters)
+- [x] **Phase 2: Client Module** (Client CRUD, Contacts JSONB)
+- [x] **Phase 3: Campaign Module** (Campaign Entity, Status Lifecycle, Dates & Budget)
+- [x] **Phase 4: Creator Module** (Creator CRM, Social Accounts JSONB)
+- [x] **Phase 5: Campaign Creator Roster** (Assignment, Status Transition)
+- [x] **Phase 6: Deliverable Module** (Deliverable Items, Deadlines, Platform Types)
+- [x] **Phase 7: Content Submission & MinIO Storage** (Presigned Upload, Versioning V1/V2)
+- [ ] **Phase 8: Approval & Review Module** (Review Decision, Feedback Comments, Camunda Workflow)
+- [ ] **Phase 9: Publishing & Manual Metrics** (Live URLs, Reach/Impressions/Engagement)
+- [ ] **Phase 10: Reporting Module** (jsreport Async Worker via RabbitMQ, PDF Reports)
+- [ ] **Phase 11: Dashboard, Notifications & Audit Trail**
+- [ ] **Phase 12: Security Hardening, E2E Testing & Pilot Release**
+
+> **Catatan**: command `SubmitPublishProof` (submit Live URL + bukti tayang) sudah diimplementasikan di modul Deliverable — bagian "publishing" dari Phase 9 sebagian sudah ada; yang belum adalah input manual metrics.
 
