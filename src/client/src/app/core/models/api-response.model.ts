@@ -13,3 +13,12 @@ export interface ProblemDetails {
   instance?: string;
   errors?: Record<string, string[]>;
 }
+
+export interface PagedResult<T> {
+  items: T[];
+  totalCount: number;
+  pageNumber: number;
+  pageSize: number;
+  totalPages: number;
+}
+

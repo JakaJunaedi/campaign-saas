@@ -33,13 +33,15 @@ export const routes: Routes = [
       },
       {
         path: 'clients',
-        loadComponent: () => import('./features/placeholders/feature-placeholder.component').then(m => m.FeaturePlaceholderComponent),
-        data: { title: 'Clients & Brands Management', description: 'Manage brand profiles and PIC contacts.' }
+        loadComponent: () => import('./features/clients/client-list/client-list.component').then(m => m.ClientListComponent)
       },
       {
         path: 'campaigns',
-        loadComponent: () => import('./features/placeholders/feature-placeholder.component').then(m => m.FeaturePlaceholderComponent),
-        data: { title: 'Campaign Operations', description: 'Manage campaign briefs, budgets, dates, and status tracking.' }
+        loadComponent: () => import('./features/campaigns/campaign-list/campaign-list.component').then(m => m.CampaignListComponent)
+      },
+      {
+        path: 'campaigns/:id',
+        loadComponent: () => import('./features/campaigns/campaign-detail/campaign-detail.component').then(m => m.CampaignDetailComponent)
       },
       {
         path: 'creators',
