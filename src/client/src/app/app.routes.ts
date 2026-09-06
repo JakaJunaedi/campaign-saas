@@ -53,13 +53,11 @@ export const routes: Routes = [
       },
       {
         path: 'reports',
-        loadComponent: () => import('./features/placeholders/feature-placeholder.component').then(m => m.FeaturePlaceholderComponent),
-        data: { title: 'Campaign Reporting & PDF Engine', description: 'Manual metrics aggregation and asynchronous PDF export generation.' }
+        loadComponent: () => import('./features/reports/reports-dashboard.component').then(m => m.ReportsDashboardComponent)
       },
       {
         path: 'audit-logs',
-        loadComponent: () => import('./features/placeholders/feature-placeholder.component').then(m => m.FeaturePlaceholderComponent),
-        data: { title: 'Security & Audit Trail', description: 'Cross-module tenant activity logging and audit trail.' }
+        loadComponent: () => import('./features/audit/audit-log-list.component').then(m => m.AuditLogListComponent)
       }
     ]
   },
