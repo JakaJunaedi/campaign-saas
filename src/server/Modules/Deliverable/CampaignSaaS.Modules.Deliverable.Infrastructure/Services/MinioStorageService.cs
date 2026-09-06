@@ -63,6 +63,14 @@ public class MinioStorageService : IStorageService
         {
             try
             {
+                var beArgs = new BucketExistsArgs().WithBucket(_defaultBucket);
+                bool found = await _minioClient.BucketExistsAsync(beArgs, cancellationToken);
+                if (!found)
+                {
+                    var mbArgs = new MakeBucketArgs().WithBucket(_defaultBucket);
+                    await _minioClient.MakeBucketAsync(mbArgs, cancellationToken);
+                }
+
                 var args = new PresignedPutObjectArgs()
                     .WithBucket(_defaultBucket)
                     .WithObject(objectKey)

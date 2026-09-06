@@ -51,6 +51,14 @@ public class MinioReportStorageService : IReportStorageService
         {
             try
             {
+                var beArgs = new BucketExistsArgs().WithBucket(_bucket);
+                bool found = await _minioClient.BucketExistsAsync(beArgs, cancellationToken);
+                if (!found)
+                {
+                    var mbArgs = new MakeBucketArgs().WithBucket(_bucket);
+                    await _minioClient.MakeBucketAsync(mbArgs, cancellationToken);
+                }
+
                 using var stream = new MemoryStream(pdfBytes);
                 var putArgs = new PutObjectArgs()
                     .WithBucket(_bucket)
