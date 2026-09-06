@@ -25,6 +25,14 @@ public static class DependencyInjection
             });
         });
 
+        services.AddDbContextFactory<IntegrationDbContext>(options =>
+        {
+            options.UseNpgsql(connectionString, npgsqlOptions =>
+            {
+                npgsqlOptions.MigrationsAssembly(typeof(IntegrationDbContext).Assembly.FullName);
+            });
+        });
+
         services.AddMassTransit(busConfig =>
         {
             busConfig.SetKebabCaseEndpointNameFormatter();
