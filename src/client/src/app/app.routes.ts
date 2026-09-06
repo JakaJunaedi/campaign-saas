@@ -45,8 +45,7 @@ export const routes: Routes = [
       },
       {
         path: 'creators',
-        loadComponent: () => import('./features/placeholders/feature-placeholder.component').then(m => m.FeaturePlaceholderComponent),
-        data: { title: 'Creator CRM & Roster', description: 'Creator CRM directory, niches, social handles, and Kanban roster.' }
+        loadComponent: () => import('./features/creators/creator-hub.component').then(m => m.CreatorHubComponent)
       },
       {
         path: 'deliverables',
