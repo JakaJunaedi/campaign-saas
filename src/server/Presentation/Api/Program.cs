@@ -10,6 +10,10 @@ using CampaignSaaS.Modules.Campaign.Application;
 using CampaignSaaS.Modules.Campaign.Infrastructure;
 using CampaignSaaS.Modules.Deliverable.Application;
 using CampaignSaaS.Modules.Deliverable.Infrastructure;
+using CampaignSaaS.Modules.Approval.Application;
+using CampaignSaaS.Modules.Approval.Infrastructure;
+using CampaignSaaS.Modules.Reporting.Application;
+using CampaignSaaS.Modules.Reporting.Infrastructure;
 using CampaignSaaS.SharedKernel;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -71,6 +75,12 @@ builder.Services.AddCampaignInfrastructure(builder.Configuration);
 
 builder.Services.AddDeliverableApplication();
 builder.Services.AddDeliverableInfrastructure(builder.Configuration);
+
+builder.Services.AddApprovalApplication();
+builder.Services.AddApprovalInfrastructure(builder.Configuration);
+
+builder.Services.AddReportingApplication();
+builder.Services.AddReportingInfrastructure(builder.Configuration);
 
 // 5. Authentication & JWT Setup
 var jwtSecretKey = builder.Configuration["JwtOptions:SecretKey"] ?? "SuperSecretKeyForCampaignSaaSApp2026_Minimum32Chars!";

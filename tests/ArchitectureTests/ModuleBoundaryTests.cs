@@ -215,4 +215,91 @@ public class ModuleBoundaryTests
 
         result.IsSuccessful.Should().BeTrue("Deliverable module must not reference other module DbContexts directly.");
     }
+
+    [Fact]
+    public void ApprovalDomain_ShouldNot_DependOn_InfrastructureOrApplication()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Approval.Domain.Entities.ApprovalReview).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Approval.Infrastructure",
+                "CampaignSaaS.Modules.Approval.Application",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Approval Domain must not depend on Infrastructure, Application, or EF Core.");
+    }
+
+    [Fact]
+    public void ApprovalApplication_ShouldNot_DependOn_Infrastructure()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Approval.Application.Commands.SubmitReview.SubmitReviewCommand).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Approval.Infrastructure",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Approval Application must not depend on Infrastructure or EF Core.");
+    }
+
+    [Fact]
+    public void ApprovalModule_ShouldNot_DependOn_OtherModuleDbContexts()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Approval.Infrastructure.Persistence.ApprovalDbContext).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Identity.Infrastructure",
+                "CampaignSaaS.Modules.Client.Infrastructure",
+                "CampaignSaaS.Modules.Creator.Infrastructure",
+                "CampaignSaaS.Modules.Campaign.Infrastructure",
+                "CampaignSaaS.Modules.Deliverable.Infrastructure")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Approval module must not reference other module DbContexts directly.");
+    }
+
+    [Fact]
+    public void ReportingDomain_ShouldNot_DependOn_InfrastructureOrApplication()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Reporting.Domain.Entities.CampaignMetric).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Reporting.Infrastructure",
+                "CampaignSaaS.Modules.Reporting.Application",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Reporting Domain must not depend on Infrastructure, Application, or EF Core.");
+    }
+
+    [Fact]
+    public void ReportingApplication_ShouldNot_DependOn_Infrastructure()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Reporting.Application.Commands.RecordDeliverableMetrics.RecordDeliverableMetricsCommand).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Reporting.Infrastructure",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Reporting Application must not depend on Infrastructure or EF Core.");
+    }
+
+    [Fact]
+    public void ReportingModule_ShouldNot_DependOn_OtherModuleDbContexts()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Reporting.Infrastructure.Persistence.ReportingDbContext).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Identity.Infrastructure",
+                "CampaignSaaS.Modules.Client.Infrastructure",
+                "CampaignSaaS.Modules.Creator.Infrastructure",
+                "CampaignSaaS.Modules.Campaign.Infrastructure",
+                "CampaignSaaS.Modules.Deliverable.Infrastructure",
+                "CampaignSaaS.Modules.Approval.Infrastructure")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Reporting module must not reference other module DbContexts directly.");
+    }
 }

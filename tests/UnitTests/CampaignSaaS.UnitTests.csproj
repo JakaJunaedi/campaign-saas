@@ -40,5 +40,13 @@
     <ProjectReference Include="..\..\src\server\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Application\CampaignSaaS.Modules.Deliverable.Application.csproj" />
     <ProjectReference Include="..\..\src\server\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Contracts\CampaignSaaS.Modules.Deliverable.Contracts.csproj" />
     <ProjectReference Include="..\..\src\server\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Infrastructure\CampaignSaaS.Modules.Deliverable.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Approval\CampaignSaaS.Modules.Approval.Domain\CampaignSaaS.Modules.Approval.Domain.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Approval\CampaignSaaS.Modules.Approval.Application\CampaignSaaS.Modules.Approval.Application.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Approval\CampaignSaaS.Modules.Approval.Contracts\CampaignSaaS.Modules.Approval.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Approval\CampaignSaaS.Modules.Approval.Infrastructure\CampaignSaaS.Modules.Approval.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Reporting\CampaignSaaS.Modules.Reporting.Domain\CampaignSaaS.Modules.Reporting.Domain.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Reporting\CampaignSaaS.Modules.Reporting.Application\CampaignSaaS.Modules.Reporting.Application.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Reporting\CampaignSaaS.Modules.Reporting.Contracts\CampaignSaaS.Modules.Reporting.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Reporting\CampaignSaaS.Modules.Reporting.Infrastructure\CampaignSaaS.Modules.Reporting.Infrastructure.csproj" />
   </ItemGroup>
 </Project>

@@ -92,9 +92,9 @@ Penomoran phase mengacu pada [IMPLEMENTATION_PLAN.md](file:///d:/Jack/dotnet/cam
 - [x] **Phase 5: Campaign Creator Roster** (Assignment, Status Transition)
 - [x] **Phase 6: Deliverable Module** (Deliverable Items, Deadlines, Platform Types)
 - [x] **Phase 7: Content Submission & MinIO Storage** (Presigned Upload, Versioning V1/V2)
-- [ ] **Phase 8: Approval & Review Module** (Review Decision, Feedback Comments, Camunda Workflow)
-- [ ] **Phase 9: Publishing & Manual Metrics** (Live URLs, Reach/Impressions/Engagement)
-- [ ] **Phase 10: Reporting Module** (jsreport Async Worker via RabbitMQ, PDF Reports)
+- [x] **Phase 8: Approval & Review Module** (Review Decision, Feedback Comments, Submission History)
+- [x] **Phase 9: Publishing & Manual Metrics** (Live URLs, Reach/Impressions/Views/Likes/Comments/Engagement)
+- [x] **Phase 10: Reporting Module** (jsreport PDF Generation, Async Reporting, Download URLs)
 - [ ] **Phase 11: Dashboard, Notifications & Audit Trail**
 - [ ] **Phase 12: Security Hardening, E2E Testing & Pilot Release**
 
