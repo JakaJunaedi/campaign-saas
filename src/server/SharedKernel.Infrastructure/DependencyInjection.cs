@@ -17,14 +17,6 @@ public static class DependencyInjection
             ?? configuration.GetConnectionString("DefaultConnection")
             ?? "Host=localhost;Port=5432;Database=campaign_saas_dev;Username=saas_admin;Password=DevPassword123!";
 
-        services.AddDbContext<IntegrationDbContext>(options =>
-        {
-            options.UseNpgsql(connectionString, npgsqlOptions =>
-            {
-                npgsqlOptions.MigrationsAssembly(typeof(IntegrationDbContext).Assembly.FullName);
-            });
-        });
-
         services.AddDbContextFactory<IntegrationDbContext>(options =>
         {
             options.UseNpgsql(connectionString, npgsqlOptions =>
@@ -32,6 +24,11 @@ public static class DependencyInjection
                 npgsqlOptions.MigrationsAssembly(typeof(IntegrationDbContext).Assembly.FullName);
             });
         });
+
+        // Scoped resolution must come from the singleton factory (avoid captive dependency
+        // between the singleton IDbContextFactory and the scoped DbContextOptions).
+        services.AddScoped<IntegrationDbContext>(sp =>
+            sp.GetRequiredService<IDbContextFactory<IntegrationDbContext>>().CreateDbContext());
 
         services.AddMassTransit(busConfig =>
         {
