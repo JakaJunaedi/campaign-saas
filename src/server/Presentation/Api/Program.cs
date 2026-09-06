@@ -2,6 +2,7 @@ using System.Text;
 using CampaignSaaS.Api.Common;
 using CampaignSaaS.Modules.Identity.Application;
 using CampaignSaaS.Modules.Identity.Infrastructure;
+using CampaignSaaS.Modules.Identity.Infrastructure.DataSeeding;
 using CampaignSaaS.Modules.Client.Application;
 using CampaignSaaS.Modules.Client.Infrastructure;
 using CampaignSaaS.Modules.Creator.Application;
@@ -126,7 +127,15 @@ builder.Services.AddHealthChecks();
 
 var app = builder.Build();
 
-// 7. HTTP Request Pipeline
+// 7. Development Data Seeding (idempotent dev accounts)
+if (app.Environment.IsDevelopment())
+{
+    using var seedScope = app.Services.CreateScope();
+    var identitySeeder = seedScope.ServiceProvider.GetRequiredService<IdentityDataSeeder>();
+    await identitySeeder.SeedAsync();
+}
+
+// 8. HTTP Request Pipeline
 if (app.Environment.IsDevelopment() || true) // Always enable swagger in local dev mode
 {
     app.UseSwagger();

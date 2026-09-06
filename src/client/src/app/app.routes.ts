@@ -49,8 +49,7 @@ export const routes: Routes = [
       },
       {
         path: 'deliverables',
-        loadComponent: () => import('./features/placeholders/feature-placeholder.component').then(m => m.FeaturePlaceholderComponent),
-        data: { title: 'Deliverables & Review Workflow', description: 'Track deliverable deadlines, media submissions, and reviews.' }
+        loadComponent: () => import('./features/deliverables/deliverable-list.component').then(m => m.DeliverableListComponent)
       },
       {
         path: 'reports',

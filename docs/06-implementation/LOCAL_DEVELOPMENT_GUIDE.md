@@ -155,7 +155,7 @@ Untuk mempermudah pengujian alur kerja tanpa perlu registrasi manual berulang:
 
 | Peran | Email | Password | Organization ID (Tenant) |
 | :--- | :--- | :--- | :--- |
-| **SuperAdmin (Root)** | `superadmin@campaignsaas.local` | `SuperAdminDev123!` | `00000000-0000-0000-0000-000000000000` (System Scope) |
+| **SuperAdmin (Root)** | `superadmin@campaignsaas.local` | `SuperAdminDev123!` | `22222222-2222-2222-2222-222222222222` (System Scope) |
 | **Agency Owner** | `owner@agency-alpha.local` | `OwnerDev123!` | `11111111-1111-1111-1111-111111111111` |
 | **Campaign Manager** | `cm@agency-alpha.local` | `CmDev123!` | `11111111-1111-1111-1111-111111111111` |
 | **Content Reviewer** | `reviewer@agency-alpha.local` | `ReviewerDev123!` | `11111111-1111-1111-1111-111111111111` |

@@ -1,6 +1,7 @@
 namespace CampaignSaaS.Modules.Identity.Infrastructure;
 
 using CampaignSaaS.Modules.Identity.Application.Abstractions;
+using CampaignSaaS.Modules.Identity.Infrastructure.DataSeeding;
 using CampaignSaaS.Modules.Identity.Infrastructure.Persistence;
 using CampaignSaaS.Modules.Identity.Infrastructure.Repositories;
 using CampaignSaaS.Modules.Identity.Infrastructure.Services;
@@ -31,6 +32,9 @@ public static class DependencyInjection
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<IRefreshTokenRepository, RefreshTokenRepository>();
         services.AddScoped<IIdentityUnitOfWork, IdentityUnitOfWork>();
+
+        // Development data seeding
+        services.AddScoped<IdentityDataSeeder>();
 
         return services;
     }

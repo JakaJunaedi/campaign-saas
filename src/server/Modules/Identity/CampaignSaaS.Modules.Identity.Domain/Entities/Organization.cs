@@ -31,6 +31,13 @@ public class Organization : AggregateRoot<Guid>
         return org;
     }
 
+    public static Organization Create(Guid id, string name, string slug, OrganizationStatus status = OrganizationStatus.Active)
+    {
+        var org = new Organization(id, name, slug, status);
+        org.AddDomainEvent(new OrganizationCreatedDomainEvent(org.Id, org.Name, org.Slug, org.CreatedAt));
+        return org;
+    }
+
     public void Update(string name, string slug)
     {
         Name = name;
