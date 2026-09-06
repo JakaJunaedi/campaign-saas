@@ -28,6 +28,14 @@ public class CampaignReportRepository : ICampaignReportRepository
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<int> GetTotalReportsCountAsync(Guid organizationId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.CampaignReports
+            .Where(r => r.OrganizationId == organizationId)
+            .CountAsync(cancellationToken);
+    }
+
+
     public async Task AddAsync(CampaignReport report, CancellationToken cancellationToken = default)
     {
         await _dbContext.CampaignReports.AddAsync(report, cancellationToken);

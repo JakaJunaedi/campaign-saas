@@ -33,10 +33,43 @@ public class OrganizationRepository : IOrganizationRepository
             .AnyAsync(o => o.Slug == slug, cancellationToken);
     }
 
+    public async Task<(IReadOnlyList<Organization> Items, int TotalCount)> GetPagedAsync(
+        string? searchTerm,
+        Domain.Enums.OrganizationStatus? status,
+        int pageNumber,
+        int pageSize,
+        CancellationToken cancellationToken = default)
+    {
+        var query = _context.Organizations
+            .IgnoreQueryFilters()
+            .Where(o => !o.IsDeleted);
+
+        if (!string.IsNullOrWhiteSpace(searchTerm))
+        {
+            var term = searchTerm.Trim().ToLower();
+            query = query.Where(o => EF.Functions.ILike(o.Name, $"%{term}%") || EF.Functions.ILike(o.Slug, $"%{term}%"));
+        }
+
+        if (status.HasValue)
+        {
+            query = query.Where(o => o.Status == status.Value);
+        }
+
+        var totalCount = await query.CountAsync(cancellationToken);
+        var items = await query
+            .OrderByDescending(o => o.CreatedAt)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync(cancellationToken);
+
+        return (items, totalCount);
+    }
+
     public async Task AddAsync(Organization organization, CancellationToken cancellationToken = default)
     {
         await _context.Organizations.AddAsync(organization, cancellationToken);
     }
+
 
     public void Update(Organization organization)
     {

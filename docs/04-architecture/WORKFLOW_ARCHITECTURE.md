@@ -2,27 +2,38 @@
 
 ## 1. Document Control
 - **Title**: Workflow Architecture & Orchestration Specification
-- **Purpose**: Mendefinisikan integrasi Camunda BPMN untuk mengorkestrasi state machine Campaign dan Deliverable Approval.
-- **Status**: ACCEPTED
+- **Purpose**: Mendefinisikan arsitektur workflow state machine untuk siklus campaign dan deliverable approval (MVP DDD + Phase 6 BPMN).
+- **Status**: ACCEPTED (Phased Execution)
 - **Scope**: Workflow Engine Architecture
 
 ---
 
-## 2. Prinsip Pemisahan Tanggung Jawab
+## 2. Dual-Phase Workflow Execution Strategy
+
+Sistem dirancang dengan arsitektur dua fase untuk memisahkan domain logic murni dari external orchestration engine:
+
 ```text
-┌──────────────────────────────────────┐      ┌──────────────────────────────────────┐
-│             Domain Layer             │      │          Camunda BPMN Engine         │
-│  - Business Rules & Validation       │ ───> │  - Workflow State Orchestration      │
-│  - Aggregate Invariants              │      │  - Task Assignment & Due-Date Timers │
-│  - State Persistence in PostgreSQL   │      │  - BPMN Visual Execution History     │
-└──────────────────────────────────────┘      └──────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                       FASE MVP (Phase 1 - Phase 5)                          │
+│                                                                             │
+│  [Domain Entities] ────(Domain Events)───> [MassTransit Transactional Outbox]│
+│  - State Invariants                        - Asynchronous RabbitMQ Publish  │
+│  - In-Process State Machine                - Event Choreography & Audit Log │
+└─────────────────────────────────────────────────────────────────────────────┘
+                                      │
+                                      ▼ (Post-MVP / Phase 6 Expansion)
+┌─────────────────────────────────────────────────────────────────────────────┐
+│                    FASE POST-MVP / ENTERPRISE (Phase 6)                     │
+│                                                                             │
+│  [Camunda 7.20 / Zeebe Engine] <──(External Tasks)──> [.NET Worker Service]│
+│  - BPMN Visual Execution Diagram                      - Task Topic Handlers │
+│  - Automated SLA Timers & Escalations                 - Domain Integration  │
+└─────────────────────────────────────────────────────────────────────────────┘
 ```
-- **Aturan Bisnis** tetap berada di Domain Model C# (.NET 10).
-- **Camunda** bertanggung jawab mengorkestrasi urutan langkah (*sequencing*), event gateway, dan timer batas waktu.
 
 ---
 
-## 3. Deliverable Review & Approval BPMN Process
+## 3. Deliverable Review & Approval BPMN Process Flow
 
 ```text
 [Start: Deliverable Assigned]
@@ -47,6 +58,7 @@
 
 ---
 
-## 4. Integrasi External Worker (.NET 10)
-- Aplikasi backend .NET bertindak sebagai **External Task Worker** yang mengeksekusi topik Camunda (contoh: `notify-revision-task`, `generate-report-task`).
-- Komunikasi menggunakan REST API Camunda 7 / Zeebe gRPC client.
+## 4. Implementasi Saat Ini vs Phase 6
+- **MVP (Active)**: Menggunakan C# Domain Aggregates (`Deliverable`, `ContentSubmission`, `ApprovalReview`), CQRS Handlers, dan MassTransit Transactional Outbox.
+- **Phase 6 Target**: `CampaignSaaS.Worker` mengeksekusi topik Camunda External Task (`content-review-task`, `reminder-due-task`, `pdf-report-task`).
+

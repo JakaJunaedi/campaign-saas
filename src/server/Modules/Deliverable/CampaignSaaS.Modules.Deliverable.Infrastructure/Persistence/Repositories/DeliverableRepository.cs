@@ -27,6 +27,15 @@ public class DeliverableRepository : IDeliverableRepository
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<IReadOnlyList<Deliverable>> GetByOrganizationIdAsync(Guid organizationId, CancellationToken cancellationToken = default)
+    {
+        return await _dbContext.Deliverables
+            .Where(d => d.OrganizationId == organizationId)
+            .OrderBy(d => d.DueDate)
+            .ToListAsync(cancellationToken);
+    }
+
+
     public async Task AddAsync(Deliverable deliverable, CancellationToken cancellationToken = default)
     {
         await _dbContext.Deliverables.AddAsync(deliverable, cancellationToken);

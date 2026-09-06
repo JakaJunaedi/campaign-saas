@@ -12,7 +12,9 @@ import {
   BarChart3,
   ShieldCheck,
   LogOut,
-  X
+  X,
+  Sparkles,
+  ShieldAlert
 } from 'lucide-angular';
 
 @Component({
@@ -124,6 +126,19 @@ import {
           <span>Reporting & PDF</span>
         </a>
 
+        <!-- Creator Portal Link -->
+        <div class="pt-4 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Creator Hub</div>
+
+        <a
+          routerLink="/portal"
+          routerLinkActive="bg-violet-600 text-white shadow-md shadow-violet-600/20 font-semibold"
+          (click)="closeSidebar.emit()"
+          class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-violet-300 hover:bg-slate-800 hover:text-white transition group"
+        >
+          <lucide-icon [img]="SparklesIcon" class="w-4 h-4 text-violet-400 group-hover:text-white transition"></lucide-icon>
+          <span>Creator Portal</span>
+        </a>
+
         <div class="pt-4 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-500">Security & Governance</div>
 
         <a
@@ -135,6 +150,21 @@ import {
           <lucide-icon [img]="ShieldCheckIcon" class="w-4 h-4 text-slate-400 group-hover:text-white transition"></lucide-icon>
           <span>Audit Logs</span>
         </a>
+
+        <!-- SuperAdmin Console (Only visible to SuperAdmin) -->
+        @if (authService.hasRole('SuperAdmin')) {
+          <div class="pt-4 px-3 py-1.5 text-[10px] font-semibold uppercase tracking-wider text-rose-400">Platform Admin</div>
+
+          <a
+            routerLink="/admin"
+            routerLinkActive="bg-rose-600 text-white shadow-md shadow-rose-600/20 font-semibold"
+            (click)="closeSidebar.emit()"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-rose-300 hover:bg-slate-800 hover:text-white transition group"
+          >
+            <lucide-icon [img]="ShieldAlertIcon" class="w-4 h-4 text-rose-400 group-hover:text-white transition"></lucide-icon>
+            <span>SuperAdmin Console</span>
+          </a>
+        }
       </nav>
 
       <!-- User Profile & Logout Bottom Section -->
@@ -174,6 +204,8 @@ export class SidebarComponent {
   readonly FolderKanbanIcon = FolderKanban;
   readonly BarChart3Icon = BarChart3;
   readonly ShieldCheckIcon = ShieldCheck;
+  readonly ShieldAlertIcon = ShieldAlert;
+  readonly SparklesIcon = Sparkles;
   readonly LogOutIcon = LogOut;
   readonly XIcon = X;
 }

@@ -58,9 +58,18 @@ export const routes: Routes = [
       {
         path: 'audit-logs',
         loadComponent: () => import('./features/audit/audit-log-list.component').then(m => m.AuditLogListComponent)
+      },
+      {
+        path: 'admin',
+        loadComponent: () => import('./features/admin/admin-overview.component').then(m => m.AdminOverviewComponent)
+      },
+      {
+        path: 'portal',
+        loadComponent: () => import('./features/portal/creator-portal.component').then(m => m.CreatorPortalComponent)
       }
     ]
   },
+
 
   // Fallback
   {

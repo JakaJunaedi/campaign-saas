@@ -22,4 +22,11 @@ public class ClientSummaryQueryService : IClientSummaryQueryService
 
         return client.Name;
     }
+
+    public async Task<int> GetClientsCountAsync(Guid organizationId, CancellationToken cancellationToken = default)
+    {
+        var (_, totalCount) = await _clientRepository.GetPagedAsync(organizationId, null, 1, 1, cancellationToken);
+        return totalCount;
+    }
 }
+

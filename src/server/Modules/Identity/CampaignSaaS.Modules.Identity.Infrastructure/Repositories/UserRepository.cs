@@ -48,6 +48,22 @@ public class UserRepository : IUserRepository
             .ToListAsync(cancellationToken);
     }
 
+    public async Task<int> GetUsersCountByOrganizationIdAsync(Guid organizationId, CancellationToken cancellationToken = default)
+    {
+        return await _context.Users
+            .IgnoreQueryFilters()
+            .Where(u => u.OrganizationId == organizationId)
+            .CountAsync(cancellationToken);
+    }
+
+    public async Task<int> GetTotalUsersCountAsync(CancellationToken cancellationToken = default)
+    {
+        return await _context.Users
+            .IgnoreQueryFilters()
+            .CountAsync(cancellationToken);
+    }
+
+
     public async Task AddAsync(User user, CancellationToken cancellationToken = default)
     {
         await _context.Users.AddAsync(user, cancellationToken);

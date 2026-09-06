@@ -41,3 +41,10 @@ public record PagedResult<T>(
     int PageNumber,
     int PageSize,
     int TotalPages);
+
+public record CampaignsOverviewStatsDto(
+    int ActiveCount,
+    int TotalCount,
+    decimal ActiveBudget,
+    IReadOnlyList<CampaignSummaryDto> RecentCampaigns);
+

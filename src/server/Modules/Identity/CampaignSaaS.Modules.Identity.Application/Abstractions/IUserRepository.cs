@@ -9,6 +9,9 @@ public interface IUserRepository
     Task<User?> GetByEmailGlobalAsync(string email, CancellationToken cancellationToken = default);
     Task<bool> ExistsByEmailAsync(Guid organizationId, string email, CancellationToken cancellationToken = default);
     Task<IReadOnlyList<User>> GetByOrganizationIdAsync(Guid organizationId, CancellationToken cancellationToken = default);
+    Task<int> GetUsersCountByOrganizationIdAsync(Guid organizationId, CancellationToken cancellationToken = default);
+    Task<int> GetTotalUsersCountAsync(CancellationToken cancellationToken = default);
     Task AddAsync(User user, CancellationToken cancellationToken = default);
     void Update(User user);
 }
+

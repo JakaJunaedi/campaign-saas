@@ -34,4 +34,36 @@ public class CampaignSummaryQueryService : ICampaignSummaryQueryService
             campaign.CreatedAt,
             campaign.UpdatedAt);
     }
+
+    public async Task<CampaignsOverviewStatsDto> GetCampaignsOverviewStatsAsync(Guid organizationId, CancellationToken cancellationToken = default)
+    {
+        var (allItems, totalCount) = await _campaignRepository.GetPagedAsync(organizationId, null, null, null, 1, 1000, cancellationToken);
+        var activeCampaigns = allItems.Where(c => c.Status == Domain.Enums.CampaignStatus.Active).ToList();
+        var activeCount = activeCampaigns.Count;
+        var activeBudget = activeCampaigns.Sum(c => c.Budget);
+
+        var recentCampaignsList = new List<CampaignSummaryDto>();
+        foreach (var c in allItems.Take(5))
+        {
+            var creatorsCount = await _campaignRepository.GetCreatorsCountAsync(c.Id, cancellationToken);
+            recentCampaignsList.Add(new CampaignSummaryDto(
+                c.Id,
+                c.OrganizationId,
+                c.ClientId,
+                c.Title,
+                c.Budget,
+                c.StartDate,
+                c.EndDate,
+                c.Status.ToString(),
+                creatorsCount,
+                c.CreatedAt));
+        }
+
+        return new CampaignsOverviewStatsDto(
+            activeCount,
+            totalCount,
+            activeBudget,
+            recentCampaignsList);
+    }
 }
+

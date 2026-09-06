@@ -35,3 +35,18 @@ public record PresignedUploadUrlDto(
     string ObjectKey,
     int ExpiresInMinutes);
 
+public record DashboardDeliverableActionItemDto(
+    Guid DeliverableId,
+    Guid CampaignId,
+    string DeliverableTitle,
+    string Platform,
+    string ContentType,
+    string Status,
+    DateOnly DueDate);
+
+public record DeliverablesOverviewStatsDto(
+    int PendingReviewsCount,
+    int CompletedDeliverablesCount,
+    IReadOnlyList<DashboardDeliverableActionItemDto> ActionItems);
+
+

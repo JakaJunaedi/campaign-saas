@@ -47,4 +47,31 @@ public class DeliverableSummaryQueryService : IDeliverableSummaryQueryService
 
         return result;
     }
+
+    public async Task<DeliverablesOverviewStatsDto> GetDeliverablesOverviewStatsAsync(Guid organizationId, CancellationToken cancellationToken = default)
+    {
+        var deliverables = await _deliverableRepository.GetByOrganizationIdAsync(organizationId, cancellationToken);
+        var pendingReviews = deliverables.Count(d => d.Status == Domain.Enums.DeliverableStatus.Submitted || d.Status == Domain.Enums.DeliverableStatus.Revision);
+        var completedCount = deliverables.Count(d => d.Status == Domain.Enums.DeliverableStatus.Approved || d.Status == Domain.Enums.DeliverableStatus.Published);
+
+        var actionItems = deliverables
+            .Where(d => d.Status == Domain.Enums.DeliverableStatus.Submitted || d.Status == Domain.Enums.DeliverableStatus.Revision || d.Status == Domain.Enums.DeliverableStatus.Pending)
+            .OrderBy(d => d.DueDate)
+            .Take(5)
+            .Select(d => new DashboardDeliverableActionItemDto(
+                d.Id,
+                d.CampaignId,
+                d.Title,
+                d.Platform.ToString(),
+                d.ContentType.ToString(),
+                d.Status.ToString(),
+                d.DueDate))
+            .ToList();
+
+        return new DeliverablesOverviewStatsDto(
+            pendingReviews,
+            completedCount,
+            actionItems);
+    }
 }
+

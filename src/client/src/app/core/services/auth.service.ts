@@ -26,6 +26,16 @@ export class AuthService {
   readonly userFullName = computed(() => this.currentUser()?.fullName ?? 'User');
   readonly orgName = computed(() => this.currentOrganization()?.name ?? 'Campaign SaaS');
 
+  hasRole(role: string): boolean {
+    return this.userRole()?.toLowerCase() === role.toLowerCase();
+  }
+
+  hasAnyRole(roles: string[]): boolean {
+    const current = this.userRole()?.toLowerCase();
+    if (!current) return false;
+    return roles.some(r => r.toLowerCase() === current);
+  }
+
   login(request: LoginRequest): Observable<ApiResponse<AuthResultDto>> {
     this.isLoading.set(true);
     return this.http.post<ApiResponse<AuthResultDto>>('/api/v1/auth/login', request).pipe(

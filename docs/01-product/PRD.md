@@ -52,7 +52,7 @@ Reporting
 ### 4.1 Platform, Identity & Multi-Tenancy
 - **REQ-PLT-01**: Multi-tenancy dengan isolasi data ketat berbasis `OrganizationId` (Tenant boundary).
 - **REQ-PLT-02**: Otentikasi berbasis JWT dengan Refresh Token.
-- **REQ-PLT-03**: Role-Based Access Control (RBAC) dengan 4 peran: `AgencyOwner`, `CampaignManager`, `ContentReviewer`, dan `Creator`.
+- **REQ-PLT-03**: Role-Based Access Control (RBAC) dengan 5 peran: `SuperAdmin` (Cross-Tenant Platform Operator), `AgencyOwner`, `CampaignManager`, `ContentReviewer`, dan `Creator`.
 
 ### 4.2 Client Management
 - **REQ-CLI-01**: CRUD Client (Brand pengiklan) dalam organisasi agensi.
@@ -133,7 +133,7 @@ Fitur berikut **DILARANG** diimplementasikan pada fase MVP:
 
 ## 7. Decisions, Assumptions & Open Questions
 - **ACCEPTED DECISION**: Arsitektur backend adalah Modular Monolith (.NET 10, C# 14) dengan PostgreSQL sebagai single source of truth.
-- **ACCEPTED DECISION**: Camunda BPMN digunakan untuk workflow orchestration alur Campaign & Deliverable Approval.
+- **ACCEPTED DECISION**: Workflow orchestration menggunakan In-Process DDD State Machine + MassTransit Outbox pada MVP; Camunda BPMN 7.20 / Zeebe diintegrasikan pada Phase 6 sebagai visual external orchestrator.
 - **ACCEPTED DECISION**: jsreport + RabbitMQ digunakan untuk PDF report generation asinkron.
 - **ASSUMPTION**: Creator mengakses portal web responsif (Angular 21 Standalone) tanpa native app.
 - **OPEN QUESTION**: Apakah format ekspor laporan selain PDF (misal: Excel/XLSX) diperlukan pada MVP? (PROPOSED: Ya, ekspor CSV/Excel sederhana disediakan).
