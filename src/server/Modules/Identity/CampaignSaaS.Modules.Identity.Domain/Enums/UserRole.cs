@@ -6,5 +6,6 @@ public enum UserRole
     AgencyOwner = 2,
     CampaignManager = 3,
     ContentReviewer = 4,
-    Creator = 5
+    Creator = 5,
+    ClientViewer = 6
 }

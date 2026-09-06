@@ -18,6 +18,17 @@ public record AdminOrganizationItemDto(
 public record UpdateOrganizationStatusRequest(
     string Status);
 
+public record CreateOrganizationRequest(
+    string OrganizationName,
+    string Slug,
+    string AdminFullName,
+    string AdminEmail,
+    string Password);
+
+public record UpdateOrganizationQuotaRequest(
+    long StorageQuotaBytes,
+    int MaxActiveCampaigns);
+
 public record PagedResult<T>(
     IReadOnlyList<T> Items,
     int TotalCount,

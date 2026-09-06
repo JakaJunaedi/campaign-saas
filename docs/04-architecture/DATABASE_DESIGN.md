@@ -36,6 +36,19 @@ CREATE TABLE users (
 );
 CREATE INDEX idx_users_org ON users(organization_id);
 
+CREATE TABLE refresh_tokens (
+    id UUID PRIMARY KEY,
+    organization_id UUID NOT NULL REFERENCES organizations(id) ON DELETE CASCADE,
+    user_id UUID NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+    token VARCHAR(500) NOT NULL,
+    expires_at TIMESTAMPTZ NOT NULL,
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    revoked_at TIMESTAMPTZ NULL,
+    replaced_by_token VARCHAR(500) NULL
+);
+CREATE INDEX idx_refresh_tokens_token ON refresh_tokens(token);
+CREATE INDEX idx_refresh_tokens_user ON refresh_tokens(user_id);
+
 -- 2. Client Module
 CREATE TABLE clients (
     id UUID PRIMARY KEY,
@@ -164,26 +177,27 @@ CREATE TABLE campaign_reports (
     id UUID PRIMARY KEY,
     organization_id UUID NOT NULL,
     campaign_id UUID NOT NULL, -- Logical reference to campaigns(id)
-    title VARCHAR(250) NOT NULL,
     status VARCHAR(50) NOT NULL DEFAULT 'Pending',
-    pdf_object_key VARCHAR(500) NULL,
-    generated_at TIMESTAMPTZ NULL,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    file_object_key VARCHAR(500) NULL,
+    error_message TEXT NULL,
+    requested_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    completed_at TIMESTAMPTZ NULL
 );
 CREATE INDEX idx_reports_campaign ON campaign_reports(campaign_id);
 
 -- 8. Notification Module
-CREATE TABLE notifications (
+CREATE TABLE in_app_notifications (
     id UUID PRIMARY KEY,
     organization_id UUID NOT NULL,
     user_id UUID NOT NULL, -- Logical reference to users(id)
     title VARCHAR(200) NOT NULL,
     message TEXT NOT NULL,
-    type VARCHAR(50) NOT NULL,
+    link_url VARCHAR(500) NULL,
     is_read BOOLEAN NOT NULL DEFAULT FALSE,
-    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+    read_at TIMESTAMPTZ NULL
 );
-CREATE INDEX idx_notifications_user ON notifications(user_id, is_read);
+CREATE INDEX idx_notifications_user ON in_app_notifications(user_id, is_read);
 
 -- 9. Audit Module
 CREATE TABLE audit_logs (
