@@ -173,4 +173,46 @@ public class ModuleBoundaryTests
 
         result.IsSuccessful.Should().BeTrue("Campaign module must not reference other module DbContexts directly.");
     }
+
+    [Fact]
+    public void DeliverableDomain_ShouldNot_DependOn_InfrastructureOrApplication()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Deliverable.Domain.Entities.Deliverable).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Deliverable.Infrastructure",
+                "CampaignSaaS.Modules.Deliverable.Application",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Deliverable Domain must not depend on Infrastructure, Application, or EF Core.");
+    }
+
+    [Fact]
+    public void DeliverableApplication_ShouldNot_DependOn_Infrastructure()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Deliverable.Application.Commands.CreateDeliverable.CreateDeliverableCommand).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Deliverable.Infrastructure",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Deliverable Application must not depend on Infrastructure or EF Core.");
+    }
+
+    [Fact]
+    public void DeliverableModule_ShouldNot_DependOn_OtherModuleDbContexts()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Deliverable.Infrastructure.Persistence.DeliverableDbContext).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Identity.Infrastructure",
+                "CampaignSaaS.Modules.Client.Infrastructure",
+                "CampaignSaaS.Modules.Creator.Infrastructure",
+                "CampaignSaaS.Modules.Campaign.Infrastructure")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Deliverable module must not reference other module DbContexts directly.");
+    }
 }

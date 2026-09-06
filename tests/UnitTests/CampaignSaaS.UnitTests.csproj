@@ -36,5 +36,9 @@
     <ProjectReference Include="..\..\src\server\Modules\Campaign\CampaignSaaS.Modules.Campaign.Application\CampaignSaaS.Modules.Campaign.Application.csproj" />
     <ProjectReference Include="..\..\src\server\Modules\Campaign\CampaignSaaS.Modules.Campaign.Contracts\CampaignSaaS.Modules.Campaign.Contracts.csproj" />
     <ProjectReference Include="..\..\src\server\Modules\Campaign\CampaignSaaS.Modules.Campaign.Infrastructure\CampaignSaaS.Modules.Campaign.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Domain\CampaignSaaS.Modules.Deliverable.Domain.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Application\CampaignSaaS.Modules.Deliverable.Application.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Contracts\CampaignSaaS.Modules.Deliverable.Contracts.csproj" />
+    <ProjectReference Include="..\..\src\server\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Infrastructure\CampaignSaaS.Modules.Deliverable.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
