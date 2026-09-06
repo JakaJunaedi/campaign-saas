@@ -11,6 +11,7 @@ public static class DependencyInjection
 
         services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
         services.AddValidatorsFromAssembly(assembly);
+        services.AddScoped<CampaignSaaS.Modules.Campaign.Contracts.ICampaignSummaryQueryService, CampaignSaaS.Modules.Campaign.Application.Services.CampaignSummaryQueryService>();
 
         return services;
     }

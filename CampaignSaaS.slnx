@@ -65,6 +65,7 @@
   </Folder>
   <Folder Name="/src/server/SharedKernel/">
     <Project Path="src/server/SharedKernel/CampaignSaaS.SharedKernel.csproj" />
+    <Project Path="src/server/SharedKernel.Infrastructure/CampaignSaaS.SharedKernel.Infrastructure.csproj" />
   </Folder>
   <Folder Name="/tests/" />
   <Folder Name="/tests/ArchitectureTests/">

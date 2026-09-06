@@ -14,7 +14,12 @@ using CampaignSaaS.Modules.Approval.Application;
 using CampaignSaaS.Modules.Approval.Infrastructure;
 using CampaignSaaS.Modules.Reporting.Application;
 using CampaignSaaS.Modules.Reporting.Infrastructure;
+using CampaignSaaS.Modules.Notification.Application;
+using CampaignSaaS.Modules.Notification.Infrastructure;
+using CampaignSaaS.Modules.Audit.Application;
+using CampaignSaaS.Modules.Audit.Infrastructure;
 using CampaignSaaS.SharedKernel;
+using CampaignSaaS.SharedKernel.Infrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
@@ -57,8 +62,9 @@ builder.Services.AddSwaggerGen(c =>
     });
 });
 
-// 3. SharedKernel & MultiTenancy
+// 3. SharedKernel, MultiTenancy & Messaging Outbox
 builder.Services.AddSharedKernel();
+builder.Services.AddSharedKernelInfrastructure(builder.Configuration);
 
 // 4. Modules Registration
 builder.Services.AddIdentityApplication();
@@ -81,6 +87,12 @@ builder.Services.AddApprovalInfrastructure(builder.Configuration);
 
 builder.Services.AddReportingApplication();
 builder.Services.AddReportingInfrastructure(builder.Configuration);
+
+builder.Services.AddNotificationApplication();
+builder.Services.AddNotificationInfrastructure(builder.Configuration);
+
+builder.Services.AddAuditApplication();
+builder.Services.AddAuditInfrastructure(builder.Configuration);
 
 // 5. Authentication & JWT Setup
 var jwtSecretKey = builder.Configuration["JwtOptions:SecretKey"] ?? "SuperSecretKeyForCampaignSaaSApp2026_Minimum32Chars!";

@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharedKernel\CampaignSaaS.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\SharedKernel.Infrastructure\CampaignSaaS.SharedKernel.Infrastructure.csproj" />
     <ProjectReference Include="..\..\Modules\Identity\CampaignSaaS.Modules.Identity.Contracts\CampaignSaaS.Modules.Identity.Contracts.csproj" />
     <ProjectReference Include="..\..\Modules\Identity\CampaignSaaS.Modules.Identity.Application\CampaignSaaS.Modules.Identity.Application.csproj" />
     <ProjectReference Include="..\..\Modules\Identity\CampaignSaaS.Modules.Identity.Infrastructure\CampaignSaaS.Modules.Identity.Infrastructure.csproj" />

@@ -302,4 +302,97 @@ public class ModuleBoundaryTests
 
         result.IsSuccessful.Should().BeTrue("Reporting module must not reference other module DbContexts directly.");
     }
+
+    [Fact]
+    public void NotificationDomain_ShouldNot_DependOn_InfrastructureOrApplication()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Notification.Domain.Entities.InAppNotification).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Notification.Infrastructure",
+                "CampaignSaaS.Modules.Notification.Application",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Notification Domain must not depend on Infrastructure, Application, or EF Core.");
+    }
+
+    [Fact]
+    public void NotificationApplication_ShouldNot_DependOn_Infrastructure()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Notification.Application.Commands.CreateNotification.CreateNotificationCommand).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Notification.Infrastructure",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Notification Application must not depend on Infrastructure or EF Core.");
+    }
+
+    [Fact]
+    public void NotificationModule_ShouldNot_DependOn_OtherModuleDbContexts()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Notification.Infrastructure.Persistence.NotificationDbContext).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Identity.Infrastructure",
+                "CampaignSaaS.Modules.Client.Infrastructure",
+                "CampaignSaaS.Modules.Creator.Infrastructure",
+                "CampaignSaaS.Modules.Campaign.Infrastructure",
+                "CampaignSaaS.Modules.Deliverable.Infrastructure",
+                "CampaignSaaS.Modules.Approval.Infrastructure",
+                "CampaignSaaS.Modules.Reporting.Infrastructure",
+                "CampaignSaaS.Modules.Audit.Infrastructure")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Notification module must not reference other module DbContexts directly.");
+    }
+
+    [Fact]
+    public void AuditDomain_ShouldNot_DependOn_InfrastructureOrApplication()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Audit.Domain.Entities.AuditLog).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Audit.Infrastructure",
+                "CampaignSaaS.Modules.Audit.Application",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Audit Domain must not depend on Infrastructure, Application, or EF Core.");
+    }
+
+    [Fact]
+    public void AuditApplication_ShouldNot_DependOn_Infrastructure()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Audit.Application.Commands.RecordAuditLog.RecordAuditLogCommand).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Audit.Infrastructure",
+                "Microsoft.EntityFrameworkCore")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Audit Application must not depend on Infrastructure or EF Core.");
+    }
+
+    [Fact]
+    public void AuditModule_ShouldNot_DependOn_OtherModuleDbContexts()
+    {
+        var result = Types.InAssembly(typeof(CampaignSaaS.Modules.Audit.Infrastructure.Persistence.AuditDbContext).Assembly)
+            .ShouldNot()
+            .HaveDependencyOnAny(
+                "CampaignSaaS.Modules.Identity.Infrastructure",
+                "CampaignSaaS.Modules.Client.Infrastructure",
+                "CampaignSaaS.Modules.Creator.Infrastructure",
+                "CampaignSaaS.Modules.Campaign.Infrastructure",
+                "CampaignSaaS.Modules.Deliverable.Infrastructure",
+                "CampaignSaaS.Modules.Approval.Infrastructure",
+                "CampaignSaaS.Modules.Reporting.Infrastructure",
+                "CampaignSaaS.Modules.Notification.Infrastructure")
+            .GetResult();
+
+        result.IsSuccessful.Should().BeTrue("Audit module must not reference other module DbContexts directly.");
+    }
 }
+

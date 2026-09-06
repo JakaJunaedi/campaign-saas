@@ -8,7 +8,10 @@ public static class DependencyInjection
 {
     public static IServiceCollection AddDeliverableApplication(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssembly(Assembly.GetExecutingAssembly());
+        var assembly = typeof(DependencyInjection).Assembly;
+        services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
+        services.AddValidatorsFromAssembly(assembly);
+        services.AddScoped<CampaignSaaS.Modules.Deliverable.Contracts.IDeliverableSummaryQueryService, CampaignSaaS.Modules.Deliverable.Application.Services.DeliverableSummaryQueryService>();
         return services;
     }
 }

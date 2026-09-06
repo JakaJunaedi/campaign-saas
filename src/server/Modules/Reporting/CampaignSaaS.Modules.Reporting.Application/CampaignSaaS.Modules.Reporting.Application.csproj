@@ -9,5 +9,13 @@
     <ProjectReference Include="..\..\..\SharedKernel\CampaignSaaS.SharedKernel.csproj" />
     <ProjectReference Include="..\CampaignSaaS.Modules.Reporting.Domain\CampaignSaaS.Modules.Reporting.Domain.csproj" />
     <ProjectReference Include="..\CampaignSaaS.Modules.Reporting.Contracts\CampaignSaaS.Modules.Reporting.Contracts.csproj" />
+    <ProjectReference Include="..\..\Campaign\CampaignSaaS.Modules.Campaign.Contracts\CampaignSaaS.Modules.Campaign.Contracts.csproj" />
+    <ProjectReference Include="..\..\Deliverable\CampaignSaaS.Modules.Deliverable.Contracts\CampaignSaaS.Modules.Deliverable.Contracts.csproj" />
+    <ProjectReference Include="..\..\Client\CampaignSaaS.Modules.Client.Contracts\CampaignSaaS.Modules.Client.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.Abstractions" Version="8.3.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
   </ItemGroup>
 </Project>

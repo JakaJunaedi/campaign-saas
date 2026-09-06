@@ -10,4 +10,9 @@
     <ProjectReference Include="..\CampaignSaaS.Modules.Audit.Domain\CampaignSaaS.Modules.Audit.Domain.csproj" />
     <ProjectReference Include="..\CampaignSaaS.Modules.Audit.Contracts\CampaignSaaS.Modules.Audit.Contracts.csproj" />
   </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MassTransit.Abstractions" Version="8.3.6" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.0" />
+  </ItemGroup>
 </Project>

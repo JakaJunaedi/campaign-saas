@@ -7,9 +7,30 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\SharedKernel\CampaignSaaS.SharedKernel.csproj" />
+    <ProjectReference Include="..\..\SharedKernel.Infrastructure\CampaignSaaS.SharedKernel.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Reporting\CampaignSaaS.Modules.Reporting.Contracts\CampaignSaaS.Modules.Reporting.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Reporting\CampaignSaaS.Modules.Reporting.Application\CampaignSaaS.Modules.Reporting.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Reporting\CampaignSaaS.Modules.Reporting.Infrastructure\CampaignSaaS.Modules.Reporting.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Contracts\CampaignSaaS.Modules.Deliverable.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Application\CampaignSaaS.Modules.Deliverable.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Deliverable\CampaignSaaS.Modules.Deliverable.Infrastructure\CampaignSaaS.Modules.Deliverable.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Campaign\CampaignSaaS.Modules.Campaign.Contracts\CampaignSaaS.Modules.Campaign.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Campaign\CampaignSaaS.Modules.Campaign.Application\CampaignSaaS.Modules.Campaign.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Campaign\CampaignSaaS.Modules.Campaign.Infrastructure\CampaignSaaS.Modules.Campaign.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Client\CampaignSaaS.Modules.Client.Contracts\CampaignSaaS.Modules.Client.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Client\CampaignSaaS.Modules.Client.Application\CampaignSaaS.Modules.Client.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Client\CampaignSaaS.Modules.Client.Infrastructure\CampaignSaaS.Modules.Client.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\CampaignSaaS.Modules.Notification.Contracts\CampaignSaaS.Modules.Notification.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\CampaignSaaS.Modules.Notification.Application\CampaignSaaS.Modules.Notification.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Notification\CampaignSaaS.Modules.Notification.Infrastructure\CampaignSaaS.Modules.Notification.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\Audit\CampaignSaaS.Modules.Audit.Contracts\CampaignSaaS.Modules.Audit.Contracts.csproj" />
+    <ProjectReference Include="..\..\Modules\Audit\CampaignSaaS.Modules.Audit.Application\CampaignSaaS.Modules.Audit.Application.csproj" />
+    <ProjectReference Include="..\..\Modules\Audit\CampaignSaaS.Modules.Audit.Infrastructure\CampaignSaaS.Modules.Audit.Infrastructure.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="9.0.0" />
+    <PackageReference Include="Serilog.Extensions.Hosting" Version="9.0.0" />
+    <PackageReference Include="Serilog.Sinks.Console" Version="6.0.0" />
   </ItemGroup>
 </Project>
